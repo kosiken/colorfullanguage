@@ -21,3 +21,17 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/public/posts.json
+/debug.log
+/post.html
+/yarn-error.log
+/src
+/.vscode
+/public/font-awesome
+/public/bootstrap.min.css
+/public/bootstrap.min.js
+/public/canvas.js
+/public/planet.jpg
+/public/jquery.min.js
+/public/logo.svg
+/public/bootstrap.bundle.min.js

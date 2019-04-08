@@ -31,3 +31,146 @@
     transform: rotate(360deg);
   }
 }
+.fh{
+  height:100vh;
+  z-index: -1;
+}
+.header{
+  z-index:1;
+  padding:10px;
+  position: relative;
+}
+.nav-item{
+  display:inline-block;
+ 
+}
+.nav{
+  display:none;
+  
+}
+.helpText{
+  color:rgb(78, 70, 70);
+  font-weight: 600;
+  padding:20px;
+ 
+}
+.helpTexta{
+  padding-left:20px;
+  background-color: #2020228e
+}
+.helpText a{
+  color:rgb(78, 70, 70);
+  font-weight: 600;
+  text-decoration: underline
+}
+/* h4{text-decoration: underline} */
+.card-bod {
+  padding:10px
+}
+.list-group{
+  padding: 2px
+} .list-group-item{
+  background: transparent;
+  border: none ;text-align: right;
+}
+.list-group-item:hover{
+  background: transparent;
+  color: #61dafb
+}
+
+.postData{
+  transition:all .2s linear;
+}
+.hidden{animation: 500ms;
+  transition:all .3s linear;
+  overflow: hidden;
+  padding: 5px;
+  background-color: none;
+  height: 0;
+  border:none;
+}
+/* @keyframes */
+
+.postData:hover .hidden{
+  /* background-color: #61dafb; */
+  height:130px;padding:10px;
+}
+#siteHead{
+  display:inline-block;
+  color:white;
+  font-size:0.8em
+}
+.nav-link{
+  color:white;font-weight: 500
+}
+.nav-link:hover{
+  color:rgb(117, 165, 255)
+}
+.intro, .intro .logo{
+  text-align: center;
+}
+.card-div{
+  width:100%;
+}
+.card .row{
+  padding:30px;
+}
+.tags{
+  padding:20px;
+}
+.adDiv{
+  width:100%
+}
+.adDiv{
+  padding:10px;
+}
+.card { 
+
+  border: .3px solid rgb(16, 17, 26);
+  border-left:none;border-right:none;
+  position: relative;
+  padding: 5px;
+}
+@media(min-width:900px){
+  .card .row{
+    padding:0;
+  }
+  .logo{
+    display:inline-block;text-align:auto
+     
+  }
+  .nav{
+    display:inline-block; padding-left:500px;
+  }
+ 
+  #siteHead, .nav-link{
+   font-size: 1.2em
+  }
+  .card-div{
+    width:60%;
+    padding:10px 12px 0 0 
+  }
+  .card{
+    
+    background-color: inherit;
+  
+    position: relative;
+    
+  }
+  .card-bod{
+    display: inline-block;
+   vertical-align: middle;
+    width: 50%;
+  }
+ .adDiv{
+   width:30%;
+   visibility: hidden;
+ }
+  .card-img{
+    width:40%; margin-right: 10px
+  }
+}
+
+ 
+
+   

@@ -1,41 +1,314 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    
+    <title>Colourful Language</title>
+    <style>
+        body {
+            margin: 0;
+            position: relative;
+            font-size: 1em;
+            width: 100vw
+        }
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+        canvas {
+            background-color: #121218;
+            background-attachment: fixed;
+            position: sticky
+        }
+
+        .underline {
+            text-decoration: underline
+        }
+
+        .btn {
+            margin: 10px
+        }
+
+        .fh {
+            height: 100vh;
+            width: 100%
+        }
+
+        .white {
+            color: #fff
+        }
+
+        .next {
+            background-color: #f3f9ff;
+            padding: 10px 0 0 0
+        }
+
+        @media(min-width:900px) {
+            .hero {
+                display: flex;
+                align-items: center;
+                justify-content: center
+            }
+        }
+    </style>
+    <style>
+        .site-footer {
+            background-color: #182028;
+            padding: 45px 0 20px;
+            font-size: 15px;
+            line-height: 24px;
+            color: #737373
+        }
+
+        .site-footer hr {
+            border-top-color: #bbb;
+            opacity: .5
+        }
+
+        .site-footer hr.small {
+            margin: 20px 0
+        }
+
+        .site-footer h6 {
+            color: #fff;
+            font-size: 16px;
+            text-transform: uppercase;
+            margin-top: 5px;
+            letter-spacing: 2px
+        }
+
+        .site-footer a {
+            color: #737373
+        }
+
+        .site-footer a:hover {
+            color: #36c;
+            text-decoration: none
+        }
+
+        .footer-links {
+            padding-left: 0;
+            list-style: none
+        }
+
+        .footer-links li {
+            display: block
+        }
+
+        .footer-links a {
+            color: #737373
+        }
+
+        .footer-links a:active,
+        .footer-links a:focus,
+        .footer-links a:hover {
+            color: #36c;
+            text-decoration: none
+        }
+
+        .footer-links.inline li {
+            display: inline-block
+        }
+
+        .site-footer .social-icons {
+            text-align: right
+        }
+
+        .site-footer .social-icons a {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            margin-left: 6px;
+            margin-right: 0;
+            border-radius: 100%;
+            background-color: #33353d
+        }
+
+        .copyright-text {
+            margin: 0
+        }
+
+        @media (max-width:991px) {
+            .site-footer [classNameNameName^=col-] {
+                margin-bottom: 30px
+            }
+        }
+
+        @media (max-width:767px) {
+            .site-footer {
+                padding-bottom: 0
+            }
+
+            .site-footer .copyright-text,
+            .site-footer .social-icons {
+                text-align: center
+            }
+        }
+
+        .social-icons {
+            padding-left: 0;
+            margin-bottom: 0;
+            list-style: none
+        }
+
+        .social-icons li {
+            display: inline-block;
+            margin-bottom: 4px
+        }
+
+        .social-icons li.title {
+            margin-right: 15px;
+            text-transform: uppercase;
+            color: #96a2b2;
+            font-weight: 700;
+            font-size: 13px
+        }
+
+        .social-icons a {
+            background-color: #eceeef;
+            color: #818a91;
+            font-size: 16px;
+            display: inline-block;
+            line-height: 44px;
+            width: 44px;
+            height: 44px;
+            text-align: center;
+            margin-right: 8px;
+            border-radius: 100%;
+            -webkit-transition: all .2s linear;
+            -o-transition: all .2s linear;
+            transition: all .2s linear
+        }
+
+        .social-icons a:active,
+        .social-icons a:focus,
+        .social-icons a:hover {
+            color: #fff;
+            background-color: #29aafe
+        }
+
+        .social-icons.size-sm a {
+            line-height: 34px;
+            height: 34px;
+            width: 34px;
+            font-size: 14px
+        }
+
+        .social-icons a.facebook:hover {
+            background-color: #3b5998
+        }
+
+        .social-icons a.twitter:hover {
+            background-color: #00aced
+        }
+
+        .social-icons a.linkedin:hover {
+            background-color: #007bb6
+        }
+
+        .social-icons a.dribbble:hover {
+            background-color: #ea4c89
+        }
+
+        @media (max-width:767px) {
+            .social-icons li.title {
+                display: block;
+                margin-right: 0;
+                font-weight: 600
+            }
+        }
+    </style>
+    <link href="/static/css/main.743362df.chunk.css" rel="stylesheet">
+</head>
+
+<body><noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script>
+        ! function (l) {
+            function e(e) {
+                for (var r, t, n = e[0], o = e[1], u = e[2], f = 0, i = []; f < n.length; f++) t = n[f], p[t] && i.push(
+                    p[t][0]), p[t] = 0;
+                for (r in o) Object.prototype.hasOwnProperty.call(o, r) && (l[r] = o[r]);
+                for (s && s(e); i.length;) i.shift()();
+                return c.push.apply(c, u || []), a()
+            }
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+            function a() {
+                for (var e, r = 0; r < c.length; r++) {
+                    for (var t = c[r], n = !0, o = 1; o < t.length; o++) {
+                        var u = t[o];
+                        0 !== p[u] && (n = !1)
+                    }
+                    n && (c.splice(r--, 1), e = f(f.s = t[0]))
+                }
+                return e
+            }
+            var t = {},
+                p = {
+                    1: 0
+                },
+                c = [];
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+            function f(e) {
+                if (t[e]) return t[e].exports;
+                var r = t[e] = {
+                    i: e,
+                    l: !1,
+                    exports: {}
+                };
+                return l[e].call(r.exports, r, r.exports, f), r.l = !0, r.exports
+            }
+            f.m = l, f.c = t, f.d = function (e, r, t) {
+                f.o(e, r) || Object.defineProperty(e, r, {
+                    enumerable: !0,
+                    get: t
+                })
+            }, f.r = function (e) {
+                "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, {
+                    value: "Module"
+                }), Object.defineProperty(e, "__esModule", {
+                    value: !0
+                })
+            }, f.t = function (r, e) {
+                if (1 & e && (r = f(r)), 8 & e) return r;
+                if (4 & e && "object" == typeof r && r && r.__esModule) return r;
+                var t = Object.create(null);
+                if (f.r(t), Object.defineProperty(t, "default", {
+                        enumerable: !0,
+                        value: r
+                    }), 2 & e && "string" != typeof r)
+                    for (var n in r) f.d(t, n, function (e) {
+                        return r[e]
+                    }.bind(null, n));
+                return t
+            }, f.n = function (e) {
+                var r = e && e.__esModule ? function () {
+                    return e.default
+                } : function () {
+                    return e
+                };
+                return f.d(r, "a", r), r
+            }, f.o = function (e, r) {
+                return Object.prototype.hasOwnProperty.call(e, r)
+            }, f.p = "/";
+            var r = window.webpackJsonp = window.webpackJsonp || [],
+                n = r.push.bind(r);
+            r.push = e, r = r.slice();
+            for (var o = 0; o < r.length; o++) e(r[o]);
+            var s = n;
+            a()
+        }([])
+    </script>
+    <script src="/static/js/2.46cca905.chunk.js"></script>
+    <script src="/static/js/main.1dfcd32d.chunk.js"></script>
+</body>
+
 </html>

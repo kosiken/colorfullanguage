@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>404 NOT FOUND</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+    <style>
+     /* Designed by Patryk Zabielski
+ https://patrykzabielski.com
+ patrickzabielski@gmailfor www.yourmechanic.com */
+
+html,body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+}
+canvas {
+            background-color: #121218;
+            
+       
+        }
+.bg-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  
+  
+
+}
+
+.content {
+  font-family: 'Avenir-Next',Avenir,Helvetica,sans-serif;
+  color: #fff;
+  background-color: none;
+  padding:90px;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+a {
+  color: white;
+  font-size:1em
+}
+h1 {
+  font-size: 160px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+h2 {
+  margin-top: 0;
+  max-width: 700px;
+  font-size: 30px;
+  width: 90%;
+}
+
+p {
+  text-align: left;
+  padding-bottom: 32px;
+}
+
+.btn {
+  display: inline-block;
+  border: 1px solid #aaa;
+  border-radius: 40px;
+  padding: 15px 30px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  
+}
+.btn:hover {
+    color: #e2e2e2;
+    background: rgba(255,255,255,0.10);
+  }
+@media only screen and (max-width: 480px) {
+  .btn {
+    background-color: white;
+    color: #444444;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 120px;
+  };
+}
+    
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row content">
+            <div class="col-lg-12"></div>
+            <div class="col-lg-12">
+                <h1>404</h1>
+                <h2>Oops, the resource you're looking for does not exist.</h2>
+
+                <p>
+                    It may have been moved to another location or deleted
+                    <br>
+                        if you think something is wrong <a style="color: white; font-size:1em" href="/report-issue?code=404">report the issue</a>
+                </p>
+            </div>
+            <a style="color: white; font-size:1em; text-decoration: none;" href="/" class="btn">Home</a>
+        </div>
+    </div>
+   
+   <div class="bg-img">
+     <canvas></canvas>
+   
+   
+    </div>
+
+    <script>
+    function randomIntFromRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+function randomColor(colors) {
+    return colors[Math.floor(Math.random() * colors.length)]
+}
+
+function distance(x1, y1, x2, y2) {
+    const xDist = x2 - x1
+    const yDist = y2 - y1
+
+    return Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2))
+}
+const utils = { randomIntFromRange, randomColor, distance }
+    
+    const canvas = document.querySelector('canvas')
+const c = canvas.getContext('2d')
+
+canvas.width = canvas.parentElement.clientWidth//innerWidth
+canvas.height = canvas.parentElement.clientHeight
+
+const mouse = {
+    x: innerWidth / 2,
+    y: innerHeight / 2
+}
+
+const colors = ['#2185C5', '#7ECEFD',  '#001f3f','#0074D9'
+, '#7FDBFF'
+, '#39CCCC'
+, '#3D9970',
+ '#2ECC40',
+ '#01FF70',
+ '#FFDC00',
+ '#FF851B',
+ '#FF4136',
+ '#85144b',
+ '#F012BE'
+ 
+]
+
+// Event Listeners
+
+
+
+addEventListener('resize', ()=>{
+    canvas.width = canvas.parentElement.clientWidth//innerWidth
+    canvas.height = canvas.parentElement.clientHeight
+ init()
+})
+
+
+
+// Circles
+class Circle{
+    constructor(x, y, radius, color) {
+    this.x = x
+    this.y = y
+    this.radius = radius;
+    this.velocity={
+        x:utils.randomIntFromRange(-14,14),y:10
+    }
+    this.friction = 0.8
+    this.color = color
+}}
+function line() {
+    c.moveTo(0,canvas.height)
+c.lineTo(canvas.width,canvas.height-1)
+c.strokeStyle="#251604"
+c.lineWidth=1
+c.stroke()
+}
+
+
+Circle.prototype.draw = function() {
+    c.save()
+    c.beginPath()
+    c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
+    c.fillStyle = this.color
+   this.radius>3? this.color=m1.update():null
+    c.fill()
+    c.closePath()
+    c.restore()
+}
+  
+Circle.prototype.update = function() {
+    
+    this.draw()
+    if(this.y+this.radius+this.velocity.y+8> canvas.height){this.velocity.y=-this.velocity.y*this.friction;
+    this.shatter() }else {this.velocity.y+=this.radius*0.05}
+    this.x+this.radius+this.velocity.x> canvas.width||this.x-this.radius<=0?this.velocity.x=-this.velocity.x:null
+    this.x+=this.velocity.x
+    this.y+=this.velocity.y
+   
+}
+
+class Mini extends Circle{
+    constructor(x, y, radius,r,g,b){
+        super(x,y,radius)
+        this.r= r;this.g=g;this.b=b
+    this.color = `rgba(${r},${g},${b}, 1)`
+    this.velocity={
+        x:utils.randomIntFromRange(-5,5),y:utils.randomIntFromRange(-15,15)
+    }
+    this.friction = 0.8;this.ttl=200;
+    this.opacity = 1}
+}
+
+Mini.prototype.draw = function() {
+    
+    c.save()
+    c.beginPath()
+  
+    c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
+    c.fillStyle = this.color
+    c.shadowColor=this.color
+    c.shadowBlur=5
+    c.fill()
+    c.closePath()
+    c.restore()
+    this.color=`rgba(${this.r},${this.g},${this.b}, ${this.opacity})`
+
+}
+Mini.prototype.update = function() {
+    
+    this.draw()
+    if(this.y+this.radius+this.velocity.y+8> canvas.height){this.velocity.y=-this.velocity.y*this.friction}else {this.velocity.y+=.1}
+    this.y+=this.velocity.y
+   this.x+=this.velocity.x
+   this.ttl-=1;this.opacity-=1/this.ttl
+}
+
+
+function createMountainRange(am,h,co){
+    for(let i = 0; i<am; i++){
+        const mw=canvas.width/am
+        c.beginPath()
+        c.moveTo(i*mw, canvas.height)
+        c.lineTo(i*mw+mw+325,canvas.height)
+        c.lineTo(i*mw+ mw/2,canvas.height-h)
+        c.lineTo(i*mw -325,canvas.height)
+        c.fillStyle=co;c.fill();c.closePath()
+    }
+} 
+/**
+ *
+ *
+ * @param {number} r
+ * @param {number} g
+ * @param {number} b
+ */
+function col(r,g,b){
+    this.r=r,this.g=g,this.b=b
+    this.red=0.05;this.green=0.05;this.blue=0.05
+}
+col.prototype.update=function () {
+    this.r>254||this.r<1?this.red=-this.red:null
+    this.g>254||this.g<1?this.green=-this.green:null
+    this.b>254||this.b<1?this.blue=-this.blue:null
+    this.r+=this.red;this.blue+= this.blue; this.g+=this.green
+    return 'rgb('+this.r+','+this.g+','+this.b+')'
+}
+class  Star extends Circle {
+    constructor(x, y, radius,color){
+        super(x, y, radius)
+        this.color =color
+    }
+}
+
+Circle.prototype.shatter = function() {
+    this.radius-=3
+    for(let i=0;i<Math.abs(this.radius);i++)a.push(new Mini(this.x,this.y,Math.max(this.radius/5, 1),utils.randomIntFromRange(0,255),utils.randomIntFromRange(0,255),utils.randomIntFromRange(0,255)))
+}
+const m1 =new col(utils.randomIntFromRange(0,255),utils.randomIntFromRange(0,255),utils.randomIntFromRange(0,255))
+
+
+// Implementation
+
+const gradient = c.createLinearGradient(0,0,0,canvas.width)
+gradient.addColorStop(1, '#3f586b')
+let circles, a=[],b,ticker=0
+
+function init() {
+    
+    circles=[];b=[]
+    for (let i = 0; i < 1; i++) {
+       
+    
+        circles.push(new Circle(canvas.width/2,0, 20,"white"))
+    }
+   for(let i=0;i<150;i++)b.push(new Star(Math.random()*canvas.width, Math.random()*canvas.height, utils.randomIntFromRange(0,3),'white') )
+ 
+ 
+
+}
+
+// Animation Loop
+function animate() {
+    requestAnimationFrame(animate)
+    c.fillStyle=gradient
+   c.fillRect(0, 0, canvas.width, canvas.height)
+   b.forEach(i=>i.draw())
+   createMountainRange(1, canvas.height-50,'#384551')
+  
+  createMountainRange(2, canvas.height-100, '#2b3843')
+  createMountainRange(3, canvas.height-300, '#26333e')
+ 
+    circles.forEach((i,index)=>{i.update()
+    i.radius==0||i.radius<0?circles.splice(index,1):null})
+    a.forEach((i,index)=>{i.update()
+        i.ttl==0||i.ttl<0?a.splice(index,1):null})
+       ticker++
+       if(ticker%91==0){
+
+        
+           circles.push(
+               new Circle(Math.max(Math.random()*canvas.width-20,20), 0,20,'#ffffff')
+               )
+            }
+
+}
+
+
+
+init()
+animate()
+    
+    </script>
+</body>
+</html>
