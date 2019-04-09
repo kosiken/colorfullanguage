@@ -9,9 +9,7 @@
 
   },
   "scripts": {
-    "start": "node app",
-    "build": "node app",
-    "test": "echo no test"
+    "start": "node app"
  
   },
 
