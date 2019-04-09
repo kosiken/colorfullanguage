@@ -35,3 +35,13 @@ yarn-error.log*
 /public/jquery.min.js
 /public/logo.svg
 /public/bootstrap.bundle.min.js
+/yarn.lock
+/public/font-awesome.css
+/public/precache-manifest.f1f3a95b7ac2b71c8325618ee82c95c9.js
+/public/precache-manifest.cc6a976b803a3b923bc6e3665ca2f8e7.js
+/public/precache-manifest.b687be53e29b12fea2467a960293e479.js
+/tests
+/src/App.css
+/src/App.js
+/src/App.test.js
+/src/index.js

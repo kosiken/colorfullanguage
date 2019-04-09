@@ -37,7 +37,7 @@
 }
 .header{
   z-index:1;
-  padding:10px;
+  display:flex;
   position: relative;
 }
 .nav-item{
@@ -124,12 +124,31 @@
 .adDiv{
   padding:10px;
 }
+.tag-badge{
+  color: #242321;
+  background: #fff;
+  font-size: 13px !important;
+  padding: 3px 8px;
+text-transform: lowercase;
+margin: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+margin-bottom: 3px;
+margin-left: 0;
+display: inline-block;
+}
+.tag-head{
+  background-color: #a4afc7;
+  padding:8px 3px;
+  text-align: center;font-weight: 600;
+}
 .card { 
 
   border: .3px solid rgb(16, 17, 26);
   border-left:none;border-right:none;
   position: relative;
   padding: 5px;
+
 }
 @media(min-width:900px){
   .card .row{
@@ -140,9 +159,12 @@
      
   }
   .nav{
-    display:inline-block; padding-left:500px;
+    display:inline-block; padding:10px 50px 10px 0;flex:1;
+    position: absolute;right:0;
   }
- 
+ .nav-item{
+   margin:0 20px
+ }
   #siteHead, .nav-link{
    font-size: 1.2em
   }
@@ -158,19 +180,17 @@
     
   }
   .card-bod{
-    display: inline-block;
-   vertical-align: middle;
-    width: 50%;
+    display:block;
+   
+   
   }
  .adDiv{
    width:30%;
-   visibility: hidden;
+ 
  }
-  .card-img{
-    width:40%; margin-right: 10px
-  }
+
 }
 
- 
-
-   
+.card:hover{
+  border:1px solid #000
+}

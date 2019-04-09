@@ -18,7 +18,7 @@ r.post('/newPost', (rq, rs) => {
         if (err) throw err
         let categories = []
         Object.keys(fields).forEach(e=>{
-            if(/Trivial|Story|Sport|other/.test(e))categories.push(fields[e])
+            if(/Trivial|Story|Sport|other/.test(e))categories.push(e)
           })
         let {
             title,body
@@ -29,7 +29,7 @@ r.post('/newPost', (rq, rs) => {
        }
 
         Post.addToFile(fs, './public/posts.json', 
-        new Post(title,image, body, categories))
+        new Post(title,image, body, categories, Date.now()))
         rs.json(fields)
 
     })

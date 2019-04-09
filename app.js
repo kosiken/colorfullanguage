@@ -2,6 +2,7 @@ const express = require('express'),
 app = express();
 const {join} = require('path');
 const router = require('./api.js')
+const PORT = process.env.PORT ||  80
 
 app.use(express.static(join(__dirname,'public')))
 
@@ -27,6 +28,7 @@ app.use(function(req, res) {
 
 
 
-app.listen(80, ()=>{
-    console.log('listenting on http://localhost:80/')
+
+app.listen(PORT, ()=>{
+    console.log('listenting on http://localhost:' + PORT +'/')
 })

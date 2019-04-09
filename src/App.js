@@ -10,29 +10,23 @@ import { CanvasComponent } from './layouts/Canvas';
 import PostFull from './components/Post/PostFull';
 import CreatePost from './CreatePost/CreatePost';
 
+
 class App extends Component {
   state = {
-    quickLinks: [],
-    location: ''
+    location: '',
+    tags:[]
+}
+componentDidMount(){
+Axios.get('/links.json').then(v=> {
+  this.setState({tags:v.data})
+})
 }
 /**
  * 
  * @param {string} slug 
  */
 
-componentDidMount() {
-  
-  
- Axios.get('/links.json').then(v=>{
-  
-  this.setState({quickLinks:v.data})
 
- 
-})
-
-
-
-}
 goToPost =(slug) => {
  
  
@@ -54,15 +48,23 @@ goToPost =(slug) => {
                <CanvasComponent/>
      
                <header className="header" >
-                <div className= 'logo'><img style={{width:'100px'}} alt="logo" src={logo}/>
+              <Link to="/"> <div className= 'logo'><img style={{width:'100px'}} alt="logo" src={logo}/>
                 <h2 id="siteHead">ColourfulLanguage</h2></div>
+                </Link> 
 
                 <nav className="nav">
                     <li className="nav-item">
-                    <Link to="/" className="nav-link" href="lion">Home</Link>
+                    <Link to="/" className="nav-link" >Home</Link>
                     </li>
                     <li className="nav-item">
-                    <Link to="/postlist" className="nav-link" href="lion" >About</Link>
+                    
+                    <a href="/about.html" className="nav-link" >About</a>
+                    </li>
+                    <li className="nav-item">
+                    <a href="/contact.html" className="nav-link" >Contact</a>
+                    </li>
+                    <li className="nav-item">
+                    <a href="https://kosyalli.com/game?game=all&amp;ref=colourfulLang" className="nav-link" >Game</a>
                     </li>
                 </nav>
             </header>
@@ -88,10 +90,27 @@ goToPost =(slug) => {
   
         </div>
         <div className="adDiv">
-          <ul className="list-group">
-            {this.state.quickLinks.map(i=> (<li className="list-group-item" key={uuid()}>{i}</li>))}
-          </ul>
+            <div className="card" style={{width:"100%"}}>
+              <img className="card-img-top" src="/home.jpg" alt="Card image cap"/>
+              <div className="card-body" style={{padding:"1.25rem 0 0 0"}}>
+                <h5 className="card-title tag-head">About Me</h5>
+                <p className="card-text" style={{fontSize:"0.95em"}}>Hi my name is Kosy and I'm a web developer with KRC media. ColourfulLanguage is a blog I started to tell my story to whoever cares to know</p>
+                <div className="social">
+              <ul className="social-icons">
+                <li><a target="blank" className="facebook" href="https://facebook.com"><i className="fa fa-facebook"></i></a></li>
+                <li><a target="blank" className="twitter" href="https://twitter.com"><i className="fa fa-twitter"></i></a></li>
+                <li><a target="blank" className="instagram" href="https://dribble.com"><i className="fa fa-instagram"></i></a></li>
+                <li><a target="blank" className="linkedin" href="https://linkedinS.com"><i className="fa fa-linkedin"></i></a></li>
+              </ul>
+            </div>
+              </div>
         </div>
+        <div className="tags">
+        <h4 className="tag-head">Tags</h4>
+        {this.state.tags.map(i=> (<span key={uuid()} className="tag-badge">{i}</span>))}
+      </div>
+        </div>
+       
         </div>
 
         </div>
@@ -130,6 +149,7 @@ goToPost =(slug) => {
 
   )} />
   {/* <!-- Site footer --> */}
+
   <footer className="site-footer">
     <div className="container">
       <div className="row">
