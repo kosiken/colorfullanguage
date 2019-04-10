@@ -23,14 +23,14 @@ r.post('/newPost', (rq, rs) => {
         let {
             title,body
             }= fields,image;
-       try{ image = files.file.path.replace('public\\', '') }
+       try{ image = files.file.path.replace('public\\', '')}
        catch(err){
            image ='bgp.jpg'
        }
 
         Post.addToFile(fs, './public/posts.json', 
         new Post(title,image, body, categories, Date.now()))
-        rs.json(fields)
+        rs.json({field:fields, image:image})
 
     })
 })
