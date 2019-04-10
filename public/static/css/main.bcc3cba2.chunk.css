@@ -255,10 +255,6 @@ code {
     }
 }
 
-.card:hover {
-    border: 1px solid #000
-}
-
 .post {
     background-color: #f3f9ff
 }
